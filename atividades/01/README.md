@@ -67,11 +67,11 @@ Um "Game Design Document" (GDD) é um documento crucial para o desenvolvimento d
    - Ao chegar ao final, depois do boss, a recompensa do gatinho é ser adotado por uma familia que irá Amá-lo e todas as outras recompensas obtidas durante o jogo irão junto com ele.
 
 10. **Controle de Jogo e Mapeamento de Teclas:**
-    - Seta para direita: anda para frente.
-    - Seta para esquerda: anda para trás.
-    - Seta para cima: pula.
-    - Seta para cima segurada: pulo longo.
-    - Seta para baixo: se abaixa.
+    - Seta para direita [&rarr;]: anda para frente.
+    - Seta para esquerda [&larr;]: anda para trás.
+    - Seta para cima [&uarr;]: pula.
+    - Seta para cima segurada [&uArr;]: pulo longo.
+    - Seta para baixo [&darr;]: se abaixa.
     - Z: atirar.
     - X: arranha.
     - C: dash.
