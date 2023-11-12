@@ -80,7 +80,7 @@ public class Cat : MonoBehaviour
             anim.SetBool("double_jump", false);
         }
 
-        if (collision.gameObject.tag == "Spike")
+        if (collision.gameObject.tag is "Spike" or "Saw")
         {
             GameController.instance.ShowGameOver();
             Destroy(gameObject);
