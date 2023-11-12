@@ -7,6 +7,7 @@ public class Snail : MonoBehaviour
     private Rigidbody2D rig;
     private Animator anim;
     private bool colliding;
+    private bool playerDestroyed = false;
 
     public float speed;
 
@@ -27,7 +28,7 @@ public class Snail : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
+    // Update is called once per framexsd sa
     void Update()
     {
         rig.velocity = new Vector2(speed, rig.velocity.y);
@@ -47,7 +48,7 @@ public class Snail : MonoBehaviour
         {
             float height = col.contacts[0].point.y - headPoint.position.y;
 
-            if (height > 0)
+            if (height > 0 && !playerDestroyed)
             {
                 col.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5, ForceMode2D.Impulse);
                 speed = 0;
@@ -57,6 +58,12 @@ public class Snail : MonoBehaviour
                 circleCollider2D.enabled = false;
 
                 Destroy(gameObject, .5f);
+            }
+            else
+            {
+                playerDestroyed = true;
+                GameController.instance.ShowGameOver();
+                Destroy(col.gameObject);
             }
         }
     }

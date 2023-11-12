@@ -34,8 +34,33 @@ public class GameController : MonoBehaviour
         gameOver.SetActive(true);
     }
 
+    public void NewGame()
+    {
+        SceneManager.LoadScene("initialMenu");
+    }
+
+    public void Iniciar()
+    {
+        SceneManager.LoadScene("lvl_1");
+    }
+
+    public void ShowPause(GameObject pause)
+    {
+        pause.SetActive(true);
+    }
+
+    public void HidePause(GameObject pause)
+    {
+        pause.SetActive(false);
+    }
+
     public void RestartGame(string lvlName)
     {
         SceneManager.LoadScene(lvlName);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

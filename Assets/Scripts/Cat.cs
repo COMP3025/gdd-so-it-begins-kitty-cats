@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Cat : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Cat : MonoBehaviour
 
     private Rigidbody2D rig;
     private Animator anim;
+    private bool isBlowing = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,22 +30,22 @@ public class Cat : MonoBehaviour
 
     void Move()
     {
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-        transform.position += movement * Time.deltaTime * Speed;
+        float movement = Input.GetAxis("Horizontal");
+        rig.velocity = new Vector2(movement * Speed, rig.velocity.y);
 
-        if (Input.GetAxis("Horizontal") > 0f)
+        if (movement > 0f)
         {
             anim.SetBool("walk", true);
             transform.eulerAngles = new Vector3(0f, 0f, 0f);
         }
 
-        if (Input.GetAxis("Horizontal") < 0f)
+        if (movement < 0f)
         {
             anim.SetBool("walk", true);
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
 
-        if (Input.GetAxis("Horizontal") == 0f)
+        if (movement == 0f)
         {
             anim.SetBool("walk", false);
         }
@@ -51,7 +53,7 @@ public class Cat : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && !isBlowing)
         {
             if (!isJumping)
             {
@@ -92,6 +94,22 @@ public class Cat : MonoBehaviour
         if (collision.gameObject.layer == 6)
         {
             isJumping = true;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag is "Fan")
+        {
+            isBlowing = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag is "Fan")
+        {
+            isBlowing = false;
         }
     }
 }
