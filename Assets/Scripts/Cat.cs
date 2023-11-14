@@ -9,6 +9,7 @@ public class Cat : MonoBehaviour
     public float JumpForce;
     public bool isJumping;
     public bool doubleJump;
+    public AudioSource jump;
 
     private Rigidbody2D rig;
     private Animator anim;
@@ -60,6 +61,7 @@ public class Cat : MonoBehaviour
                 rig.AddForce(new Vector2(0f, JumpForce), ForceMode2D.Impulse);
                 doubleJump = true;
                 anim.SetBool("jump", true);
+                jump.Play();
             }
             else
             {
@@ -68,6 +70,7 @@ public class Cat : MonoBehaviour
                     rig.AddForce(new Vector2(0f, JumpForce * 2f), ForceMode2D.Impulse);
                     doubleJump = false;
                     anim.SetBool("double_jump", true);
+                    jump.Play();
                 }
             }
         }

@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
     public int totalScore;
     public TextMeshProUGUI scoreText;
     public GameObject gameOver;
-
+    public AudioSource gameOverSound;
     public static GameController instance;
 
     // Start is called before the first frame update
@@ -31,6 +31,8 @@ public class GameController : MonoBehaviour
 
     public void ShowGameOver()
     {
+        AudioController.instance.BackgroundSoundPause();
+        gameOverSound.Play();
         gameOver.SetActive(true);
     }
 

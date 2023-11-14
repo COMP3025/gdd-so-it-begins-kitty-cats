@@ -6,6 +6,7 @@ public class Banana : MonoBehaviour
 {
     private SpriteRenderer sr;
     private CircleCollider2D circle;
+    public AudioSource soundCollected;
 
     public GameObject collected;
     public int Score;
@@ -33,6 +34,7 @@ public class Banana : MonoBehaviour
 
             GameController.instance.totalScore += Score;
             GameController.instance.UpdateScoreText();
+            soundCollected.Play();
 
             Destroy(gameObject, 0.25f);
         }

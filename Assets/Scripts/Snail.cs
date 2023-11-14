@@ -13,7 +13,7 @@ public class Snail : MonoBehaviour
 
     public Transform rightCol;
     public Transform leftCol;
-
+    public AudioSource damageSound;
     public Transform headPoint;
 
     public LayerMask layer;
@@ -46,6 +46,7 @@ public class Snail : MonoBehaviour
     {
         if (col.gameObject.tag is "Player")
         {
+            damageSound.Play();
             float height = col.contacts[0].point.y - headPoint.position.y;
 
             if (height > 0 && !playerDestroyed)

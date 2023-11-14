@@ -7,6 +7,7 @@ public class Trampoline : MonoBehaviour
     private Animator anim;
 
     public float jumpForce;
+    public AudioSource jumpSoud;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class Trampoline : MonoBehaviour
     {
         if (collision.gameObject.tag is "Player")
         {
+            jumpSoud.Play();
             anim.SetTrigger("jump");
             collision.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         }
